@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DATUSA</title>
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="menu.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+    </style>
+  </head>
+  <body>
+    
+
+    <div id="info">
+			Persian life in Mexico
+		</div>
+    <header>
+			<nav class="navbar">
+			  <div class="logo"><a href="index.html">DATUSA</a></div>
+			  <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+			  <ul class="menu">
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="4videosmasvistos.html">4 Videos Más Vistos</a></li>
+				<li><a href="4videosmenosvistos.html">4 Videos Menos Vistos</a></li>
+        <li><a href="pie.html">Gráfica Animada 1</a></li>
+        <li><a href="barra.html">Gráfica Animada 2</a></li>
+        <li><a href="descargas.html">Descargas</a></li>
+				<li><a href="nosotros.html">Nosotros</a></li>
+			  </ul>
+			</nav>
+		  </header>
+
+      <!-- <img src="../examples/jsm" alt=""> -->
+
+      <script type="importmap">
+        {
+          "imports": {
+            "three": "../build/three.module.js",
+            "three/addons/": "../examples/jsm"
+          }
+        }
+      </script>
+    <script type="module">
+    import * as THREE from 'three';
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.TextureLoader().load(
+        "https://yt3.ggpht.com/VgHWpXtr8L0O-AQJ6L7u12l1RVxt1mXGqsC7At0hCaqjI_0yPEMNOWxEFVFwv3ze8rEkXgxUHcL096E=s640-rw-nd-v1"
+      );
+      
+      const camera = new THREE.PerspectiveCamera(
+        35,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setAnimationLoop(animate);
+      document.body.appendChild(renderer.domElement);
+
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const texture = new THREE.TextureLoader().load(
+        "//yt3.ggpht.com/XGSsuj_0vOxvTJGDN8BTGXjZKntPM5DN18Va3ekZXfgaVoxXzTQo9XmzLIoo-fX9xSEKFcig_A=s176-c-k-c0x00ffffff-no-rj-mo"
+      );
+      
+      const material = new THREE.MeshBasicMaterial({ map: texture });
+      const cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+
+      camera.position.z = 3;
+
+      function animate() {
+        cube.rotation.x += 0.002;
+        cube.rotation.y += 0.002;
+        cube.position.x = Math.sin(Date.now() * 0.0002) * 0.5;
+        cube.position.y = Math.cos(Date.now() * 0.0002) * 0.5;
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        renderer.render(scene, camera);
+      }
+    </script>
+    
+    <script src="menu.js"></script>
+
+  </body>
+</html>
