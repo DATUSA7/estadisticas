@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DATUSA - Gráfica de Barras</title>
+  <link type="text/css" rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="menu.css">
+  <style>
+    body {
+      margin: 0;
+      background-color: #bfe3dd;
+      overflow: hidden;
+    }
+    #tooltip {
+      position: absolute;
+      padding: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      font-size: 12px;
+      border-radius: 4px;
+      pointer-events: none;
+      display: none;
+    }
+    #info span {
+        font-size: 0.5em;
+      }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="index.html">DATUSA</a></div>
+      <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+      <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="4videosmasvistos.html">4 Videos Más Vistos</a></li>
+      <li><a href="4videosmenosvistos.html">4 Videos Menos Vistos</a></li>
+      <li><a href="pie.html">Gráfica Animada 1</a></li>
+      <li><a href="barra.html">Gráfica Animada 2</a></li>
+      <li><a href="datos.html">Estadísticas</a></li>
+      <li><a href="graficos.html">Gráficos</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+    </header>
+    
+    <div id="info">
+      Los 5 videos menos vistos del canal <br />
+      <span>
+        Click izquierdo sin soltar del mouse = "Rotar", click derecho sin soltar
+        = "Mover", rueda del mouse = "Acercar" o "Alejar".
+      </span>
+    </div>
+
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "../build/three.module.js",
+            "three/addons/": "./jsm/"
+          }
+        }
+      </script>
+      
+  <script type="module">
+    import * as THREE from 'three';
+
+    // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { OrbitControls } from 'https://unpkg.com/three@latest/examples/jsm/controls/OrbitControls.js';
+
+    // Escena
+    const scene = new THREE.Scene();
+
+    // Cámara
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+    // camera.position.set(10, 10, 30);
+    // camera.lookAt(0, 5, 0);
+
+    // Inicialización de la cámara
+camera.position.set(0, 8, 5); // Acercamos la cámara a las barras
+camera.lookAt(0, 3, 0); // Apuntamos la cámara hacia las barras y el foco
+
+
+
+    // Renderizador
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true; // Habilitar sombras
+    document.body.appendChild(renderer.domElement);
+
+    // Controles de órbita
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    // Redimensionar ventana
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Luz ambiental
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+ // Luz direccional
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(10, 20, 10);
+directionalLight.castShadow = true;
+directionalLight.shadow.mapSize.width = 1024;
+directionalLight.shadow.mapSize.height = 1024;
+directionalLight.shadow.camera.near = 0.1;
+directionalLight.shadow.camera.far = 50;
+directionalLight.shadow.camera.left = -15;
+directionalLight.shadow.camera.right = 15;
+directionalLight.shadow.camera.top = 15;
+directionalLight.shadow.camera.bottom = -15;
+scene.add(directionalLight);
+
+// Crear una esfera para simular el foco
+const bulbGeometry = new THREE.SphereGeometry(0.5, 16, 16); // Tamaño del foco
+const bulbMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, emissive: 0xffff00 }); // Material brillante
+const bulb = new THREE.Mesh(bulbGeometry, bulbMaterial);
+
+// Posición inicial del foco
+bulb.position.copy(directionalLight.position);
+scene.add(bulb);
+
+    // Ayuda visual para el área de sombras
+    const lightHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
+    //scene.add(lightHelper);
+
+    
+        // FLOOR
+        const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(75,75, 32),
+        new THREE.MeshPhongMaterial({ color: 0xfab74b })
+    );
+    plane.rotation.x = -Math.PI / 2;
+    plane.receiveShadow = true;
+    scene.add(plane);
+
+    // Cilindros (barras)
+    const barGeometry = new THREE.CylinderGeometry(1, 1, 1, 32);
+    const barMaterial = new THREE.MeshPhongMaterial({ color: 0x3ea34c });
+    const barHeights = [0.1, 2, 3, 4.5, 5]; // Altura de las barras
+    const bars = [];
+
+    barHeights.forEach((height, index) => {
+      const bar = new THREE.Mesh(barGeometry, barMaterial);
+      bar.scale.y = height;
+      bar.position.set(index * 3 - 6, height / 2, 0); // Distribuir las barras
+      bar.castShadow = true;
+      bar.receiveShadow = true;
+      bars.push(bar);
+      scene.add(bar);
+    });
+
+    // Tooltip
+    const tooltip = document.createElement('div');
+    tooltip.id = 'tooltip';
+    document.body.appendChild(tooltip);
+
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    // Información para cada barra
+    const videoInfo = [
+      'Прямая трансляция пользователя Kate Mandrygina: 0 vistas',
+      'Tlalpujahua, Pueblo Mágico de las esferas en Michoacán 🇲🇽: 1,093 vistaas',
+      'Rifa de una experiencia con @fondoparalapaziap: 1,305 vistas',
+      'Taxco, Guerrero y su mina prehispánica 😍 #taxco #guerrero #pueblosmagicosmx: 1,761 vistas',
+      'San Sebastián del Oeste, Pueblo Mágico de Jalisco: 1,858 vistas'
+    ];
+
+    // Evento para mover el mouse
+    window.addEventListener('mousemove', (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      tooltip.style.left = `${event.clientX + 10}px`;
+      tooltip.style.top = `${event.clientY + 10}px`;
+    });
+
+    // Animación
+    function animate() {
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(bars);
+
+      if (intersects.length > 0) {
+        const index = bars.indexOf(intersects[0].object);
+        if (index !== -1) {
+          tooltip.style.display = 'block';
+          tooltip.textContent = videoInfo[index];
+        }
+      } else {
+        tooltip.style.display = 'none';
+      }
+
+
+      const time = Date.now() * 0.0002;
+
+// Movimiento de la luz y del foco
+directionalLight.position.x = Math.sin(time * 0.7) * 20;
+directionalLight.position.z = Math.cos(time * 0.7) * 20;
+bulb.position.copy(directionalLight.position);
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+  
+  <script src="menu.js"></script>
+
+</body>
+</html>
