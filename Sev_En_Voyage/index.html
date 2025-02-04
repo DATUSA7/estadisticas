@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DATUSA</title>
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="menu.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Playfair Display", serif;
+        background-color: #0a0a0a;
+        color: #fff;
+        text-align: center;
+      }
+
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://yt3.googleusercontent.com/CJX1mMiwDL3g2x4VTFyvyLQ9fX8aurXa0vg4OuJ0DJYNTZpwUkosEJO1jJ3el6zrGGNHvsM2_g=s160-c-k-c0x00ffffff-no-rj")
+            no-repeat center/cover;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin: 0;
+        letter-spacing: 2px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .hero p {
+        font-size: 1.4rem;
+        margin: 10px 0 20px;
+        font-style: italic;
+        opacity: 0.9;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 25px;
+        color: #fff;
+        background: linear-gradient(135deg, #e91e63, #ff9800);
+        text-decoration: none;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 5px 15px rgba(233, 30, 99, 0.5);
+      }
+
+      .btn:hover {
+        background: linear-gradient(135deg, #ff9800, #e91e63);
+        transform: scale(1.05);
+      }
+
+      .hero-img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 10px;
+        border: 4px solid #e91e63;
+        box-shadow: 0 5px 15px rgba(233, 30, 99, 0.7);
+        transition: transform 0.3s ease;
+      }
+
+      .hero-img:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="index.html">DATUSA</a></div>
+        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+        <ul class="menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="4videosmasvistos.html">4 Videos Más Vistos</a></li>
+          <li><a href="4videosmenosvistos.html">4 Videos Menos Vistos</a></li>
+          <li><a href="pie.html">Gráfica Animada 1</a></li>
+          <li><a href="barra.html">Gráfica Animada 2</a></li>
+          <li><a href="datos.html">Estadísticas</a></li>
+          <li><a href="graficos.html">Gráficos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <header2 class="hero">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1 class="fade-in">Sév en Voyage</h1>
+        <p class="fade-in">Datos relevantes de mi canal.</p>
+        <img
+          src="https://yt3.googleusercontent.com/CJX1mMiwDL3g2x4VTFyvyLQ9fX8aurXa0vg4OuJ0DJYNTZpwUkosEJO1jJ3el6zrGGNHvsM2_g=s160-c-k-c0x00ffffff-no-rj"
+          alt="Modelo 1"
+          class="hero-img"
+        />
+        <img
+          src="https://yt3.googleusercontent.com/Gw838WYMSbYqABZBPGn_Wy1XgB1vT0LsrFRYjRTTZR6B_5ezTR2NfDxIEl_0TQpQyOju44sJEI0=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
+          alt="Modelo 2"
+          class="hero-img"
+        />
+      </div>
+    </header2>
+
+    <script>
+      gsap.from(".fade-in", {
+        duration: 1.5,
+        opacity: 0,
+        y: 50,
+        stagger: 0.3,
+      });
+    </script>
+
+    <script src="menu.js"></script>
+  </body>
+</html>
