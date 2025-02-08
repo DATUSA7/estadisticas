@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DATUSA</title>
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="menu.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="info">El Sie7e de Chiapas</div>
+
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="index.html">DATUSA</a></div>
+        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+        <ul class="menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="4videosmasvistos.html">4 Videos Más Vistos</a></li>
+          <li><a href="4videosmenosvistos.html">4 Videos Menos Vistos</a></li>
+          <li><a href="pie.html">Gráfica Animada 1</a></li>
+          <li><a href="barra.html">Gráfica Animada 2</a></li>
+          <li><a href="datos.html">Estadísticas</a></li>
+          <li><a href="graficos.html">Gráficos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "../build/three.module.js",
+          "three/addons/": "../examples/jsm"
+        }
+      }
+    </script>
+    <script type="module">
+    import * as THREE from "three";
+
+const scene = new THREE.Scene();
+scene.background = new THREE.TextureLoader().load(
+  "https://yt3.googleusercontent.com/01TOhMvBWCj4bdU7L6Gl0JsoRdKnxU0U_XngdPgwF5o2hSdivvFRmiCpM2cKZcxZthSnuaM0d0A=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
+);
+const camera = new THREE.PerspectiveCamera(
+  35,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setAnimationLoop(animate);
+document.body.appendChild(renderer.domElement);
+
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const texture = new THREE.TextureLoader().load(
+  "https://yt3.googleusercontent.com/TgLIkDQjZ-cJS_aF0ZoqzWCp95nsp0LRXSg8zQ5_bLhCwezyGYVKH3uG331r2lbnn_uh6_pmpzQ=s160-c-k-c0x00ffffff-no-rj"
+);
+const material = new THREE.MeshBasicMaterial({ map: texture });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+// Agregar bordes al cubo
+const edges = new THREE.EdgesGeometry(geometry);
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x000000 }); // Color del borde negro
+const wireframe = new THREE.LineSegments(edges, lineMaterial);
+cube.add(wireframe);
+
+camera.position.z = 3;
+
+function animate() {
+  cube.rotation.x += 0.002;
+  cube.rotation.y += 0.002;
+  cube.position.x = Math.sin(Date.now() * 0.0002) * 0.5;
+  cube.position.y = Math.cos(Date.now() * 0.0002) * 0.5;
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  renderer.render(scene, camera);
+}
+
+    </script>
+
+    <script src="menu.js"></script>
+  </body>
+</html>
