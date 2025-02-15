@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datos</title>
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="menu.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      iframe {
+        border: 1px solid black;
+        width: 100%; /* takes precedence over the width set with the HTML width attribute */
+        height: 100vh;
+        padding-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="index.html">DATUSA</a></div>
+        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+        <ul class="menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="4videosmasvistos.html">4 Videos Más Vistos</a></li>
+          <li><a href="4videosmenosvistos.html">4 Videos Menos Vistos</a></li>
+          <li><a href="pie.html">Gráfica Animada 1</a></li>
+          <li><a href="barra.html">Gráfica Animada 2</a></li>
+          <li><a href="datos.html">Estadísticas</a></li>
+          <li><a href="graficos.html">Gráficos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <iframe
+      id="inlineFrameExample"
+      title="Inline Frame Example"
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQD3kgrhsQyML8uwnLY9X3gBmbPKm6mk31AarZ3PXtJF1ZWBlX1uBLebdnp-4zywbO_KyeeNIngP8Tr/pubhtml?gid=0&single=true"
+    >
+    </iframe>
+
+    <script src="menu.js"></script>
+  </body>
+</html>
