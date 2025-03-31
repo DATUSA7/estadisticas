@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programa de quinielas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-top: 20px;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        width: 90%;
+        max-width: 400px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-title {
+        background: #3498db;
+        color: white;
+        padding: 10px;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .card-description {
+        padding: 10px;
+        font-size: 1em;
+        color: #333;
+      }
+
+      .iframe-container {
+        width: 100%;
+        height: 600px;
+        border: none;
+      }
+
+      .narrative-section {
+        background: white;
+        padding: 20px;
+        margin: 30px auto;
+        width: 90%;
+        max-width: 800px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: left;
+      }
+
+      .narrative-title {
+        color: #e74c3c;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+      }
+
+      .narrative-text {
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      .narrative-iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+        margin-top: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Programa de quinielas en Excel</h1>
+
+    <div class="container">
+      <div class="card">
+        <div class="card-title">Hoja "Equipos"</div>
+        <iframe
+          class="iframe-container"
+          src="https://docs.google.com/spreadsheets/d/1jZb7I7Q10ejZgwrz_v8MjzCiegJS88EO_g78Ujfm3EE/edit?usp=sharing"
+        ></iframe>
+        <div class="card-description">
+          En esta hoja se deben introducir los encuentros de cada semana para
+          que aparezcan el página web de captura.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Hoja "Quinielas"</div>
+        <iframe
+          class="iframe-container"
+          src="https://docs.google.com/spreadsheets/d/15S74zyUrRDeakrxgbrLc-si5itQxUWIagaqKjO18u4Q/edit?usp=sharing"
+        ></iframe>
+        <div class="card-description">
+          En esta hoja se insertan los datos de los participantes mediante la
+          captura en la página web
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Hoja de Resultados</div>
+        <iframe
+          class="iframe-container"
+          src="https://docs.google.com/spreadsheets/d/11NoXpaE0C7NxTit2E_iTBiI-oDGlvxPmaOO989JWBf4/edit?usp=sharing"
+        ></iframe>
+        <div class="card-description">
+          Esta hoja es la que contiene todas las fórmulas para saber la
+          puntación de todos los participantes.
+        </div>
+      </div>
+    </div>
+
+    <h1>Páginas HTML del programa</h1>
+
+    <div class="container">
+      <div class="card">
+        <div class="card-title">Página de captura.</div>
+        <iframe
+          class="iframe-container"
+          src="https://script.google.com/macros/s/AKfycbxOHpMFUK54o8KrCpr58SwHWLN2bbTbryYqU6GV6fBhyjGaIld55Rwuh7kI2R-xEm4q/exec"
+        ></iframe>
+        <div class="card-description">
+          Esta página web es la encargada de leer la información de la hoja
+          "Equipos" y nos permite capturar el nombre del participante, así como
+          la quiniela de cada participante. Finalmente incrusta toda la
+          información en la hoja denominada "Quinielas".
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          Página que realiza el proceso de datos y la creación del archivo PDF.
+        </div>
+        <iframe
+          class="iframe-container"
+          src="https://script.google.com/macros/s/AKfycbxiT001enJ8UhJbTRRwW1h6Ig8uGYLh6KoBEZKGU6oe1v_7ZUOgkD-RNWDDhEA3jPmalw/exec"
+        ></iframe>
+        <div class="card-description">
+          Esta página web nos permite realizar el proceso de cálculo de todas
+          las quinielas de todos los participantes al igual que la generación
+          del archivo en formato de PDF.
+        </div>
+      </div>
+    </div>
+
+    <h1>Órden cronólogico del programa</h1>
+
+    <div class="narrative-section">
+      <div class="narrative-title">1. Captura de Datos</div>
+      <p class="narrative-text">
+        El administrador del programa captura o edita la hoja denominda
+        "Equipos" con los encuentros de la jornada, ya que la página web de
+        captura se basa en esta información.
+      </p>
+      <iframe
+        class="narrative-iframe"
+        src="https://docs.google.com/spreadsheets/d/1jZb7I7Q10ejZgwrz_v8MjzCiegJS88EO_g78Ujfm3EE/edit?usp=sharing"
+      ></iframe>
+    </div>
+
+    <div class="narrative-section">
+      <div class="narrative-title">2. Captura de datos de la quiniela.</div>
+      <p class="narrative-text">
+        Los participantes capturan su nombre y hacen sus elecciones de los
+        partidos de la jornada. Esta página envía la información a la hoja
+        denominada "Quinielas".
+      </p>
+      <iframe
+        class="narrative-iframe"
+        src="https://script.google.com/macros/s/AKfycbxOHpMFUK54o8KrCpr58SwHWLN2bbTbryYqU6GV6fBhyjGaIld55Rwuh7kI2R-xEm4q/exec"
+      ></iframe>
+    </div>
+
+    <div class="narrative-section">
+      <div class="narrative-title">3. Hoja "Quinielas".</div>
+      <p class="narrative-text">
+        Una vez que se envían los resultados, estos se muestran en la hoja
+        "Quinielas".
+      </p>
+      <iframe
+        class="narrative-iframe"
+        src="https://docs.google.com/spreadsheets/d/15S74zyUrRDeakrxgbrLc-si5itQxUWIagaqKjO18u4Q/edit?usp=sharing"
+      ></iframe>
+    </div>
+
+    <div class="narrative-section">
+      <div class="narrative-title">
+        4. Cálculo del proceso y envío de información.
+      </div>
+      <p class="narrative-text">
+        En este paso se lleva a cabo el proceso de cálculos y se genera el envío
+        de los resultados en formato PDF.
+      </p>
+      <iframe
+        class="narrative-iframe"
+        src="https://script.google.com/macros/s/AKfycbxiT001enJ8UhJbTRRwW1h6Ig8uGYLh6KoBEZKGU6oe1v_7ZUOgkD-RNWDDhEA3jPmalw/exec"
+      ></iframe>
+    </div>
+  </body>
+</html>
