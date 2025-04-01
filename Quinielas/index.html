@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Quinielas Juárez</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__bar">
+        <div class="nav__header">
+          <div class="logo nav__logo">
+            <div>Q</div>
+            <span>Quinielas<br />Juárez</span>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#menu">Descripción</a></li>
+          <li><a href="#video">Video</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="header" id="home">
+      <div class="section__container header__container">
+        <p class="section__subheader"></p>
+        <h1>Programa<br />en Excel</h1>
+        <!-- <button class="btn">Descarga imágenes</button> -->
+      </div>
+    </header>
+
+
+    <section class="menu" id="menu">
+      <div class="section__container menu__container">
+        <div class="menu__header">
+          <div>
+            <p class="section__subheader">Descripción</p>
+            <h2 class="section__header">Programa de Quinielas</h2>
+          </div>
+          <!-- <div class="section__nav">
+            <span><i class="ri-arrow-left-line"></i></span>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div> -->
+        </div>
+        <ul class="menu__items">
+          <li>
+            <img src="assets/Encuentros.jpg" alt="menu" />
+            <div class="menu__details">
+              <h4>Plantilla de Partidos</h4>
+              <p>
+                Esta plantilla de Excel contiene los encuentros de la jornada.
+                Cada semana se debe de editar para que la página web los lea.
+              </p>
+            </div>
+          </li>
+          <li>
+            <img src="assets/webCaptura.jpg" alt="menu" />
+            <div class="menu__details">
+              <h4>Página web de captura.</h4>
+              <p>
+                Esta página web lee los partidos de la hoja "Equipos", nos
+                permite la captura de la información y guarda los datos en la
+                hoja "Quinielas".
+              </p>
+            </div>
+          </li>
+          <li>
+            <img src="assets/basedatosQuiniela.jpg" alt="menu" />
+            <div class="menu__details">
+              <h4>Base de datos de quinielas</h4>
+              <p>
+                Esta hoja es la que contiene la base de datos que se crea con la
+                captura de todos los participantes.
+              </p>
+            </div>
+          </li>
+          <li>
+            <img src="assets/webProcesos.jpg" alt="menu" />
+            <div class="menu__details">
+              <h4>Página web de procesos.</h4>
+              <p>
+                Esta página web realiza los procesos de todos los cálculos y
+                crea un archivo con toda la información final y lo envia a un
+                correo.
+              </p>
+            </div>
+          </li>
+          <li>
+            <img src="assets/hojaResultados.jpg" alt="menu" />
+            <div class="menu__details">
+              <h4>Hoja de fórmulas y procesos.</h4>
+              <p>
+                La hoja de "Resultados" es la que contiene todas las fórmulas,
+                con estos datos se crea el archivo en formato PDF.
+              </p>
+            </div>
+          </li>
+        </ul>
+        <div class="menu__images">
+          <img src="assets/costoQuiniela.jpg" alt="menu" />
+          <img src="assets/aciertos.jpg" alt="menu" />
+          <img src="assets/capturaResReal.jpg" alt="menu" />
+        </div>
+      </div>
+    </section>
+
+    <!-- <script src="https://unpkg.com/scrollreveal"></script> -->
+
+
+    <section class="container" id="video">
+    <div class="video-container">
+
+   
+      <h2>Video tutorial</h2>
+
+      <video controls autoplay loop width="640" height="360" poster="assets/Encuentros.jpg">
+        <source src="assets/Quinielas.mp4" type="video/mp4">
+        <source src="assets/Quinielas.mp4" type="video/ogg">
+        Tu navegador no soporta la etiqueta video.
+
+      </video>
+    
+    </div>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+</html>
